@@ -41,12 +41,20 @@ class Cell:
             return
         if(self.walls[0]):
             self._win.draw_line(Line(self._top_left_corner, self._top_right_corner), "black")
+        else:
+            self._win.draw_line(Line(self._top_left_corner, self._top_right_corner), "white")
         if(self.walls[1]):
             self._win.draw_line(Line(self._bottom_left_corner, self._bottom_right_corner), "black")
+        else:
+            self._win.draw_line(Line(self._bottom_left_corner, self._bottom_right_corner), "white")
         if(self.walls[2]):
             self._win.draw_line(Line(self._top_left_corner, self._bottom_left_corner), "black")
+        else:
+            self._win.draw_line(Line(self._top_left_corner, self._bottom_left_corner), "white")
         if(self.walls[3]):
             self._win.draw_line(Line(self._top_right_corner, self._bottom_right_corner), "black")
+        else:
+            self._win.draw_line(Line(self._top_right_corner, self._bottom_right_corner), "white")
         return
     
     def draw_move(self, to_cell, undo=False):
