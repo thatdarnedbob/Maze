@@ -1,4 +1,4 @@
-from Windows import Window
+from Window import Window
 
 def main():
     win = Window(800, 600)
