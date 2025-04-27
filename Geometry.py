@@ -14,7 +14,7 @@ class Line:
                            fill=fill_c, width=2)
 
 class Cell:
-    def __init__(self, tl_corner, br_corner, window, walls=[True, True, True, True]):
+    def __init__(self, tl_corner, br_corner, window=None, walls=[True, True, True, True]):
         self.walls = walls
         # walls format: top, bottom, left, right
         self._top_left_corner = tl_corner
@@ -37,6 +37,8 @@ class Cell:
                      0.5 * (self.y1() + self.y2()))
 
     def draw(self):
+        if self._win is None:
+            return
         if(self.walls[0]):
             self._win.draw_line(Line(self._top_left_corner, self._top_right_corner), "black")
         if(self.walls[1]):
