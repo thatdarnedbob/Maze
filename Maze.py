@@ -1,4 +1,5 @@
 from Geometry import *
+import time
 
 class Maze():
     def __init__(
@@ -33,7 +34,16 @@ class Maze():
                 walls = [True, True, True, True]
                 next_cell = Cell(tl_corner, br_corner, self._win, walls)
                 next_col.append(next_cell)
-                next_cell.draw()
             self._cells.append(next_col)
-
         
+        for col in range(self._num_cols):
+            for row in range(self._num_rows):
+                self._draw_cell(col, row)
+
+    def _draw_cell(self, col, row):
+        self._cells[col][row].draw()
+        self._animate()
+    
+    def _animate(self):
+        self._win.redraw()
+        time.sleep(0.05)
