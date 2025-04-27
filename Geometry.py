@@ -32,6 +32,9 @@ class Cell:
         return self._top_left_corner.y
     def y2(self):
         return self._bottom_right_corner.y
+    def center_point(self):
+        return Point(0.5 * (self.x1() + self.x2()),
+                     0.5 * (self.y1() + self.y2()))
 
     def draw(self):
         if(self.walls[0]):
@@ -49,8 +52,4 @@ class Cell:
             c = "gray"
         else:
             c = "red"
-        self._win.draw_line(Line(Point(0.5 * (self.x1() + self.x2()),
-                                       0.5 * (self.y1() + self.y2())),
-                                Point(0.5 * (to_cell.x1() + to_cell.x2()),
-                                       0.5 * (to_cell.y1() + to_cell.y2()))),
-                            c)
+        self._win.draw_line(Line(self.center_point(), to_cell.center_point()), c)
