@@ -23,6 +23,7 @@ class Cell:
         self._top_right_corner = Point(self.x2(), self.y1())
         self._bottom_left_corner = Point(self.x1(), self.y2())
         self._win = window
+        self._visited = False
     
     def x1(self):
         return self._top_left_corner.x
@@ -58,6 +59,8 @@ class Cell:
         return
     
     def draw_move(self, to_cell, undo=False):
+        if self._win is None:
+            return
         if undo:
             c = "gray"
         else:

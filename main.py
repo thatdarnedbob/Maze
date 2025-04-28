@@ -10,9 +10,10 @@ def main():
     win.wait_for_close()
 
 def maze_test(win):
-    maze = Maze(10, 10, 3, 8, 40, 40, win)
+    maze = Maze(10, 10, 10, 14, 40, 40, win)
     maze._break_entrance_and_exit()
     maze._animate()
+    maze._break_walls(0,0)
 
 def basic_cell_test(win):
     A1, A2 = Point(10,10), Point(50,50)

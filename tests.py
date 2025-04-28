@@ -25,7 +25,23 @@ class Tests(unittest.TestCase):
 
         self.assertEqual(m1._cells[0][0].walls[0], False)
         self.assertEqual(m1._cells[num_cols-1][num_rows-1].walls[1], False)
-        
+
+    def test_break_walls(self):
+        num_cols = 12
+        num_rows = 10
+        m1 = Maze(0, 0, num_rows, num_cols, 10, 10)
+        m1._break_entrance_and_exit()
+        m1._break_walls(0, 0)
+
+    def test_reset_cells(self):
+        num_cols = 12
+        num_rows = 10
+        m1 = Maze(0, 0, num_rows, num_cols, 10, 10)
+        m1._break_entrance_and_exit()
+        m1._break_walls(0, 0)
+        m1._reset_cells_visited()
+        self.assertEqual(m1._cells[1][1]._visited, False)
+
 if __name__ == "__main__":
     # print("doin")
     unittest.main()
