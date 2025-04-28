@@ -3,7 +3,7 @@ from Geometry import *
 from Maze import Maze
 
 def main():
-    win = Window(800, 600)
+    win = Window(800, 800)
 
     maze_test(win)
     
