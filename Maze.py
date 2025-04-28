@@ -122,3 +122,53 @@ class Maze():
         for col in self._cells:
             for cell in col:
                 cell._visited = False
+
+    def solve(self):
+        return self._solve_r(0, 0)
+    
+    def _solve_r(self, row, col):
+        self._animate()
+        cc = self._cells[col][row]
+        cc._visited = True
+        if row == self._num_rows - 1 and col == self._num_cols - 1:
+            return True
+        
+        # right
+        if col < self._num_cols - 1 and not cc.walls[3]:
+            tc = self._cells[col + 1][row]
+            if not tc._visited:
+                cc.draw_move(tc)
+                res = self._solve_r(row, col + 1)
+                if res:
+                    return True
+                cc.draw_move(tc, undo=True)
+        # left
+        if row > 0 and not cc.walls[2]:
+            tc = self._cells[col - 1][row]
+            if not tc._visited:
+                cc.draw_move(tc)
+                res = self._solve_r(row, col - 1)
+                if res:
+                    return True
+                cc.draw_move(tc, undo=True)
+        # down
+        if row < self._num_rows - 1 and not cc.walls[1]:
+            tc = self._cells[col][row + 1]
+            if not tc._visited:
+                cc.draw_move(tc)
+                res = self._solve_r(row + 1, col)
+                if res:
+                    return True
+                cc.draw_move(tc, undo=True)
+        # up
+        if row > 0 and not cc.walls[0]:
+            tc = self._cells[col][row - 1]
+            if not tc._visited:
+                cc.draw_move(tc)
+                res = self._solve_r(row - 1, col)
+                if res:
+                    return True
+                cc.draw_move(tc, undo=True)
+
+
+        return False

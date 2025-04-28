@@ -4,14 +4,15 @@ class Point:
         self.y = y
 
 class Line:
-    def __init__(self, begin, end):
+    def __init__(self, begin, end, width=3):
         self.begin = begin
         self.end = end
+        self.width = width
 
     def draw(self, canvas, fill_c):
         canvas.create_line(self.begin.x, self.begin.y,
                            self.end.x, self.end.y,
-                           fill=fill_c, width=2)
+                           fill=fill_c, width=self.width)
 
 class Cell:
     def __init__(self, tl_corner, br_corner, window=None, walls=[True, True, True, True]):
@@ -65,4 +66,4 @@ class Cell:
             c = "gray"
         else:
             c = "red"
-        self._win.draw_line(Line(self.center_point(), to_cell.center_point()), c)
+        self._win.draw_line(Line(self.center_point(), to_cell.center_point(), width = 2), c)
